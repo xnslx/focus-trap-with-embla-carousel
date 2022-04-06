@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 40px 20px;
+}
+
+.footer__link {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  text-decoration: none;
+  border-radius: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+.footer__link__svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  fill: rgb(192, 192, 192);
+}
