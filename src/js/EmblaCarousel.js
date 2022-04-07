@@ -5,17 +5,20 @@ import React, {
   useRef,
   useMemo
 } from "react";
+import ReactDOM from "react-dom";
 import { PrevButton, NextButton } from "./EmblaCarouselButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import FocusTrap from "focus-trap-react";
+import Frame from "react-frame-component";
+import Plyr from "plyr-react";
+import "plyr-react/dist/plyr.css";
 
 import { useNestedEmblaCarousel } from "./useNestedEmblaCarousel";
 import "../css/embla.css";
 import { List } from "../media/index";
 
 const NestedCarousel = ({ slides, setLockParentScroll }) => {
-  console.log("nested", slides);
   const [viewportRef, embla] = useEmblaCarousel(
     {
       axis: "y",
@@ -80,12 +83,18 @@ const NestedCarousel = ({ slides, setLockParentScroll }) => {
 };
 
 const VariedTypeCarousel = ({ s, key }) => {
-  const [focusTrapped, setFocusTrapped] = useState(false);
-  const [div, setDiv] = useState(null);
-  const divDocument = useMemo(() => (div ? div.ownerDocument : null), [div]);
-  console.log("focusTrapped", focusTrapped);
-  console.log("div", div);
-  console.log("divDocument", divDocument);
+  const videoSrc = {
+    controls: ["play", "fullscreen"],
+    type: "video",
+    sources: [
+      {
+        src: "https://player.vimeo.com/video/613922369",
+        provider: "vimeo",
+        type: "video/mp4"
+      }
+    ]
+  };
+
   switch (s.type) {
     case "image":
       return (
@@ -101,34 +110,31 @@ const VariedTypeCarousel = ({ s, key }) => {
       );
     case "video":
       return (
+        <div>
+          {/* <Plyr source={videoSrc} /> */}
+          <Plyr
+            source={{
+              type: "video",
+              sources: [
+                {
+                  src: "aqz-KE-bpKQ",
+                  provider: "youtube"
+                }
+              ]
+            }}
+          />
+        </div>
         // <iframe
-        //   src={`https://player.vimeo.com/video/${621078885}?background=1&autoplay=1&autopause=0&loop=1&muted=1`}
-        //   frameBorder="0"
-        //   title="test video"
-        //   allow="autoplay; fullscreen"
+        //   src="https://player.vimeo.com/video/613922369?h=0d8ebdc340&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        //   frameborder="0"
         //   style={{
         //     height: "100vw",
         //     minWidth: "150vh"
         //   }}
+        //   allow="autoplay; fullscreen; picture-in-picture"
+        //   allowfullscreen
+        //   title="Untitled.mp4"
         // ></iframe>
-        <FocusTrap
-          active={divDocument !== null}
-          focusTrapOptions={{ document: divDocument }}
-        >
-          <div>
-            <iframe
-              src="https://player.vimeo.com/video/613922369?h=0d8ebdc340&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-              frameborder="0"
-              style={{
-                height: "100vw",
-                minWidth: "150vh"
-              }}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowfullscreen
-              title="Untitled.mp4"
-            ></iframe>
-          </div>
-        </FocusTrap>
       );
     default:
       return null;
@@ -136,7 +142,13 @@ const VariedTypeCarousel = ({ s, key }) => {
 };
 
 const EmblaCarousel = () => {
-  const [viewportRef, embla] = useEmblaCarousel();
+  const [viewportRef, embla] = useEmblaCarousel(
+    {
+      axis: "x",
+      skipSnaps: false
+    },
+    [WheelGesturesPlugin({ forceWheelAxis: "x" })]
+  );
   const setLockParentScroll = useNestedEmblaCarousel(embla);
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
