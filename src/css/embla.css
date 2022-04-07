@@ -201,3 +201,11 @@
   border-style: none;
   object-fit: contain;
 }
+
+.plyr__progress {
+  opacity: 0;
+}
+
+.plyr__controls__item {
+  opacity: 0;
+}

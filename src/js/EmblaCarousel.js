@@ -83,17 +83,17 @@ const NestedCarousel = ({ slides, setLockParentScroll }) => {
 };
 
 const VariedTypeCarousel = ({ s, key }) => {
-  const videoSrc = {
-    controls: ["play", "fullscreen"],
-    type: "video",
-    sources: [
-      {
-        src: "https://player.vimeo.com/video/613922369",
-        provider: "vimeo",
-        type: "video/mp4"
-      }
-    ]
-  };
+  // const videoSrc = {
+  //   controls: ["play", "fullscreen"],
+  //   type: "video",
+  //   sources: [
+  //     {
+  //       src: "https://player.vimeo.com/video/613922369",
+  //       provider: "vimeo",
+  //       type: "video/mp4"
+  //     }
+  //   ]
+  // };
 
   switch (s.type) {
     case "image":
