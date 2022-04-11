@@ -13,10 +13,12 @@ import FocusTrap from "focus-trap-react";
 import Frame from "react-frame-component";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
+import { motion } from "framer-motion";
 
 import { useNestedEmblaCarousel } from "./useNestedEmblaCarousel";
 import "../css/embla.css";
 import { List } from "../media/index";
+import BackgroundColorComponent from "./BackgroundColorComponent";
 
 const NestedCarousel = ({ slides, setLockParentScroll }) => {
   const [viewportRef, embla] = useEmblaCarousel(
@@ -110,31 +112,31 @@ const VariedTypeCarousel = ({ s, key }) => {
       );
     case "video":
       return (
-        <div>
-          {/* <Plyr source={videoSrc} /> */}
-          <Plyr
-            source={{
-              type: "video",
-              sources: [
-                {
-                  src: "aqz-KE-bpKQ",
-                  provider: "youtube"
-                }
-              ]
-            }}
-          />
-        </div>
-        // <iframe
-        //   src="https://player.vimeo.com/video/613922369?h=0d8ebdc340&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-        //   frameborder="0"
-        //   style={{
-        //     height: "100vw",
-        //     minWidth: "150vh"
-        //   }}
-        //   allow="autoplay; fullscreen; picture-in-picture"
-        //   allowfullscreen
-        //   title="Untitled.mp4"
-        // ></iframe>
+        // <div>
+        //   {/* <Plyr source={videoSrc} /> */}
+        //   <Plyr
+        //     source={{
+        //       type: "video",
+        //       sources: [
+        //         {
+        //           src: "aqz-KE-bpKQ",
+        //           provider: "youtube"
+        //         }
+        //       ]
+        //     }}
+        //   />
+        // </div>
+        <iframe
+          src="https://player.vimeo.com/video/613922369?h=0d8ebdc340&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          frameborder="0"
+          style={{
+            height: "100vw",
+            minWidth: "150vh"
+          }}
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="Untitled.mp4"
+        ></iframe>
       );
     default:
       return null;

@@ -2,7 +2,7 @@
   position: relative;
   /* background-color: #f7f7f7; */
   max-width: 100vw;
-  height: 90vh;
+  height: 100vh;
   margin-left: auto;
   margin-right: auto;
 }
@@ -208,4 +208,12 @@
 
 .plyr__controls__item {
   opacity: 0;
+}
+
+.test__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
 }
