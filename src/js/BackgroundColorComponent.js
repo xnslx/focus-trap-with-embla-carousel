@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 
 import "../css/embla.css";
 
-const BackgroundColorComponent = ({ children }, rotation) => {
+const BackgroundColorComponent = ({ children, rotateNum }) => {
+  console.log("bg", rotateNum);
   return (
     <motion.svg className="test__background">
       <motion.linearGradient
         id="myGradient"
         animate={{
-          gradientTransform: `rotate(${rotation})`
+          gradientTransform: `rotate(${rotateNum})`
         }}
       >
         <stop offset="5%" stop-color="#f4791f" />

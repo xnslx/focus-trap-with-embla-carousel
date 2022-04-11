@@ -143,7 +143,8 @@ const VariedTypeCarousel = ({ s, key }) => {
   }
 };
 
-const EmblaCarousel = () => {
+const EmblaCarousel = (props) => {
+  console.log("rotation", props);
   const [viewportRef, embla] = useEmblaCarousel(
     {
       axis: "x",
@@ -154,8 +155,16 @@ const EmblaCarousel = () => {
   const setLockParentScroll = useNestedEmblaCarousel(embla);
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
-  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
-  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
+  const scrollPrev = useCallback(() => {
+    embla && embla.scrollPrev();
+    props.prevBtnRotation();
+  }, [embla]);
+
+  const scrollNext = useCallback(() => {
+    embla && embla.scrollNext();
+    props.nextBtnRotation();
+  }, [embla]);
+
   const onSelect = useCallback(() => {
     if (!embla) return;
     setPrevBtnEnabled(embla.canScrollPrev());
